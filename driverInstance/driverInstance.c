@@ -40,8 +40,7 @@ static void _cycTimerHandler(void)
 	return;
 }
 
-//static int __init driverTestInit(void)
-static int driverTestInit(void)
+static int __init driverTestInit(void)
 {
 	kDebug("driver test iiiinit.\r\n");
 
@@ -53,8 +52,7 @@ static int driverTestInit(void)
 	return 0;
 }
 
-//static void __exit driverTestExit(void)
-static void driverTestExit(void)
+static void __exit driverTestExit(void)
 {
 	kDebug("driver test eeeexit.\r\n");
 	del_timer(&_cycTimer);
