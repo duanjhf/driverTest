@@ -24,6 +24,7 @@
 /************************************************************************************************/
 /*                                        DEFINES                                               */
 /************************************************************************************************/
+#define	NETLINK_DRIVER_TEST	(27)
 
 /************************************************************************************************/
 /*                                        VARIABLES                                             */
@@ -107,11 +108,12 @@ int netlinkUserInit(void)
 		if (0 == sendPidFlag) {
 			/* send pid to kernel */
 			_netlinkSend(NL_MSG_TYPE_PID, NULL, 0);
+			sendPidFlag = 1;
 		}
 		return _netlinkFd;
 	}
 
-	_netlinkFd = socket(AF_NETLINK, SOCK_RAW, NETLINK_GENERIC);
+	_netlinkFd = socket(AF_NETLINK, SOCK_RAW, NETLINK_DRIVER_TEST);
 	if (_netlinkFd < 0) {
 		nlError("netlink socket init failed.\r\n");
 		return -1;
@@ -127,6 +129,13 @@ int netlinkUserInit(void)
 		nlError("bind netlink socket failed.\r\n");
 		goto netlinkInitErr;
 	}
+
+	if (0 == sendPidFlag) {
+		/* send pid to kernel */
+		_netlinkSend(NL_MSG_TYPE_PID, NULL, 0);
+		sendPidFlag = 1;
+	}
+
 	nlDebug("init netlink successed, fd = %d\r\n", _netlinkFd);
 	return _netlinkFd;
 

@@ -13,5 +13,7 @@ int main(void)
 {
 	printf("net link user test.\r\n");
 	netlinkUserInit();
+
+	netlinkUserDeinit();
 	return 0;
 }
