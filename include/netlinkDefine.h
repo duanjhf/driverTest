@@ -15,6 +15,8 @@ typedef	unsigned char	uint8;
 typedef	unsigned short	uint16;
 typedef	unsigned int	uint32;
 
+#define	NETLINK_DRIVER_TEST	(27)
+
 typedef enum {
 	NL_MSG_TYPE_PID,
 } NL_MSG_TYPE;
