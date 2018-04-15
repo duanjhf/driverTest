@@ -17,20 +17,14 @@
 #include <net/sock.h>
 #include <linux/skbuff.h>
 
+#include "../include/dDefineKernel.h"
+
 /************************************************************************************************/
 /*                                      CONFIGURATIONS                                          */
 /************************************************************************************************/
 MODULE_LICENSE("Dual GPL/BSD");
 MODULE_AUTHOR("duanjhf");
 MODULE_DESCRIPTION("netlink driver test.");
-
-/************************************************************************************************/
-/*                                          DEFINES                                             */
-/************************************************************************************************/
-#define	kDebug(fmt, args...)	\
-	printk("[kDebug] %d, %s: "fmt, __LINE__, __FUNCTION__, ##args)
-#define	kError(fmt, args...)	\
-	printk("[!!!! kError] %d, %s: "fmt, __LINE__, __FUNCTION__, ##args)
 
 /************************************************************************************************/
 /*                                        VARIABLES                                             */
