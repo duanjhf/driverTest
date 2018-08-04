@@ -23,6 +23,10 @@
 
 #include <linux/ioctl.h> /* needed for the _IOW etc stuff used later */
 
+#include <linux/cdev.h>
+#include <linux/ioctl.h>
+#include <linux/fs.h>
+
 #include "../include/dDefineKernel.h"
 
 
@@ -87,10 +91,6 @@ static void ioctlKernelExit(void)
 	kDebug("ioctl kernel exit.");
 	kDebug("scull dev no = %0#x, major = %0#x, minor = %0#x.", dev_no, scull_major, scull_minor);
 
-	if (dev_no) {
-		unregister_chrdev_region(dev_no, scull_nr_devs);
-	}
-
 	if (NULL != scull_devices) {
 		for (i = 0; i < scull_nr_devs; ++ i) {
 			cdev_del(&scull_devices[i].cdev);
@@ -99,6 +99,9 @@ static void ioctlKernelExit(void)
 		scull_devices = NULL;
 	}
 
+	if (dev_no) {
+		unregister_chrdev_region(dev_no, scull_nr_devs);
+	}
 	return;
 }
 
