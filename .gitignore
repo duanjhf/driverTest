@@ -2,3 +2,12 @@ build/
 .cproject
 .project
 .settings/
+*.o
+*.ko
+*.ko.cmd
+*.o.cmd
+*.mod.c
+modules.order
+modules.symvers
+.tmp_versions
+Module.symvers
